@@ -5,6 +5,7 @@ import chaiHttp = require('chai-http');
 
 import { app } from '../app';
 import Example from '../database/models/ExampleModel';
+import mockedById from '../tests/mocks/teams.mock';
 
 import { Response } from 'superagent';
 
@@ -12,34 +13,19 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('Seu teste', () => {
-  /**
-   * Exemplo do uso de stubs com tipos
-   */
+describe('Testes de backend', () => {
+  describe('Teams', function () {
+    it('Testa se retorna todos os times', async function () {
+      const response = await chai.request(app).get('/teams');
+  
+      expect(response.status).to.equal(200);
+    });
 
-  // let chaiHttpResponse: Response;
+    it('Testa se retorna o time correto na busca por Id', async function () {
+      const resp = await chai.request(app).get('/teams/5');
 
-  // before(async () => {
-  //   sinon
-  //     .stub(Example, "findOne")
-  //     .resolves({
-  //       ...<Seu mock>
-  //     } as Example);
-  // });
-
-  // after(()=>{
-  //   (Example.findOne as sinon.SinonStub).restore();
-  // })
-
-  // it('...', async () => {
-  //   chaiHttpResponse = await chai
-  //      .request(app)
-  //      ...
-
-  //   expect(...)
-  // });
-
-  it('Seu sub-teste.', () => {
-    expect(false).to.be.eq(true);
+      expect(resp.status).to.equal(200);
+      expect(resp.body).to.be.deep.equal(mockedById);
+    })
   });
 });
