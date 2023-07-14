@@ -1,5 +1,5 @@
 import * as express from 'express';
-import router from './database/routes/Router';
+import router from './routes/Router';
 
 class App {
   public app: express.Express;

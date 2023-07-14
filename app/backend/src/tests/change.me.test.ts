@@ -5,7 +5,8 @@ import chaiHttp = require('chai-http');
 
 import { app } from '../app';
 import Example from '../database/models/ExampleModel';
-import mockedById from '../tests/mocks/teams.mock';
+import mockedById from '../tests/mocks/teamById.mock'
+import mockedTeams from '../tests/mocks/teams.mock';
 
 import { Response } from 'superagent';
 
@@ -19,6 +20,7 @@ describe('Testes de backend', () => {
       const response = await chai.request(app).get('/teams');
   
       expect(response.status).to.equal(200);
+      expect(response.body).to.be.deep.equal(mockedTeams);
     });
 
     it('Testa se retorna o time correto na busca por Id', async function () {

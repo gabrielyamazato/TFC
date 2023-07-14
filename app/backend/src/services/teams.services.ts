@@ -1,4 +1,4 @@
-import TeamsModel from '../models/Teams.model';
+import TeamsModel from '../database/models/Teams.model'
 
 type Id = string;
 
