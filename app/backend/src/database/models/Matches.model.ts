@@ -5,16 +5,17 @@ import {
   InferCreationAttributes,
   CreationOptional,
 } from 'sequelize';
-import db from '.'
+import db from '.';
 import Teams from './Teams.model';
 
-export default class Matches extends Model<InferAttributes<Matches>, InferCreationAttributes<Matches>> {
+export default class Matches extends Model<InferAttributes<Matches>,
+InferCreationAttributes<Matches>> {
   declare id: CreationOptional<number>;
   declare homeTeamId: CreationOptional<number>;
   declare homeTeamGoals: CreationOptional<number>;
   declare awayTeamId: CreationOptional<number>;
   declare awayTeamGoals: CreationOptional<number>;
-  declare inProgress: CreationOptional<boolean>; 
+  declare inProgress: CreationOptional<boolean>;
 }
 
 Matches.init({
@@ -30,7 +31,7 @@ Matches.init({
     references: {
       model: 'teams',
       key: 'id',
-    }
+    },
   },
   homeTeamGoals: {
     type: DataTypes.INTEGER,
@@ -42,7 +43,7 @@ Matches.init({
     references: {
       model: 'teams',
       key: 'id',
-    }
+    },
   },
   awayTeamGoals: {
     type: DataTypes.INTEGER,

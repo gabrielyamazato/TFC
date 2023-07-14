@@ -1,4 +1,4 @@
-import TeamsModel from '../database/models/Teams.model'
+import TeamsModel from '../database/models/Teams.model';
 
 type Id = string;
 
@@ -9,7 +9,7 @@ async function getAllTeams(): Promise<object[]> {
 }
 
 async function getTeamById(id: Id): Promise<object | null> {
-  const reqOneTeam = await TeamsModel.findByPk(id)
+  const reqOneTeam = await TeamsModel.findByPk(id);
 
   return reqOneTeam;
 }

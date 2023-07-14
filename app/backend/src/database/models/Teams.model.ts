@@ -5,7 +5,7 @@ import {
   InferCreationAttributes,
   CreationOptional,
 } from 'sequelize';
-import db from '.'
+import db from '.';
 
 export default class Teams extends Model<InferAttributes<Teams>, InferCreationAttributes<Teams>> {
   declare id: CreationOptional<number>;
