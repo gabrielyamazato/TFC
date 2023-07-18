@@ -1,11 +1,17 @@
 import Login from '../Interfaces/Login';
 import userModel from '../database/models/Users.model';
 
-async function checkLogin(data: Login): Promise<any> {
-  const { email } = data;
-  const reqUser = await userModel.findOne({ where: { email } });
+export default class authLogin {
+  private model = userModel;
 
-  return reqUser;
+  public async authLogin(data: Login) {
+    const { email } = data;
+
+    const user = await this.model.findOne({ where: { email } });
+    if (!user) {
+      return null;
+    }
+    console.log(user.dataValues.email);
+    return user.dataValues.email;
+  }
 }
-
-export default checkLogin;

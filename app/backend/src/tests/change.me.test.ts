@@ -44,7 +44,7 @@ describe('Testes de backend', () => {
         .post(route)
         .send(loginData)
 
-      expect(response).to.have.status(200);
+      expect(response).to.have.status(201);
     })
   })
 });

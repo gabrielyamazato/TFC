@@ -1,10 +1,14 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 import loginService from '../services/login.services';
 
-async function checkLogin(req: Request, res: Response): Promise<Response> {
-  const resp = await loginService(req.body);
+export default class authLogin {
+  constructor(
+    private LoginService = new loginService(),
+  ) { }
 
-  return res.status(200).json({ message: 'ok', user: resp });
-};
-
-export default checkLogin;
+  public async login(req: Request, res: Response) {
+    const serviceResponse = await this.LoginService.authLogin(req.body);
+    console.log('CONSOLE 2 AQUI ----->', serviceResponse);
+    res.status(200).json(serviceResponse);
+  }
+}

@@ -9,10 +9,10 @@ import db from '.';
 
 export default class Users extends Model<InferAttributes<Users>, InferCreationAttributes<Users>> {
   declare id: CreationOptional<number>;
-  declare username: CreationOptional<string>;
-  declare role: CreationOptional<string>;
-  declare email: CreationOptional<string>;
-  declare password: CreationOptional<string>;
+  declare username: string;
+  declare role: string;
+  declare email: string;
+  declare password: string;
 }
 
 Users.init({
