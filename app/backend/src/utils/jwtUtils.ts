@@ -9,10 +9,10 @@ export default class JwtUtils {
   }
 
   public verify(payload: string): any {
-    return jwt.verify(payload, this.jwtSecret)
+    return jwt.verify(payload, this.jwtSecret);
   }
 
-  public decode(payload: string): any {
-    return jwt.decode(payload)
+  static decode(payload: string): any {
+    return jwt.decode(payload);
   }
-};
+}

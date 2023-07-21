@@ -1,4 +1,4 @@
-import * as bcrypt from 'bcryptjs'
+import * as bcrypt from 'bcryptjs';
 import Login from '../Interfaces/Login';
 import userModel from '../database/models/Users.model';
 import JwtUtils from '../utils/jwtUtils';
@@ -17,27 +17,27 @@ export default class authLogin {
     }
 
     if (!bcrypt.compareSync(password, user.dataValues.password)) {
-      return 'INVALID'
+      return 'INVALID';
     }
 
     const token = this.jwtUtils.sign({ id: user.dataValues.id });
 
-    return { token: token }
+    return { token };
   }
 
   public async getRole(data: string): Promise<object | string> {
     const tokenToValidate = data.split(' ');
 
-    const tokenValidated = this.jwtUtils.decode(tokenToValidate[1]);
+    const tokenValidated = JwtUtils.decode(tokenToValidate[1]);
 
     const user = await this.model.findByPk(tokenValidated.id);
 
     if (!user) {
-      return 'INVALID_TOKEN'
+      return 'INVALID_TOKEN';
     }
-    
+
     return {
-      role: user.dataValues.role
-    }
+      role: user.dataValues.role,
+    };
   }
 }
