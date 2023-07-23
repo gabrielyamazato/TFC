@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import getTeams from '../controllers/teams.controllers';
 import LoginController from '../controllers/login.controller';
+import MatchesController from '../controllers/matches.controller';
 import authLoginMiddleware from '../middlewares/authLogin.middleware';
 import AuthTokenMiddleware from '../middlewares/authToken.middleware';
 
@@ -20,5 +21,6 @@ router.get(
   AuthTokenMiddleware.validateToken,
   (req, res) => loginController.getRole(req, res),
 );
+router.get('/matches', MatchesController.getAllMatches);
 
 export default router;
