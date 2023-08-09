@@ -22,5 +22,16 @@ router.get(
   (req, res) => loginController.getRole(req, res),
 );
 router.get('/matches', MatchesController.getAllMatches);
+router.post('/matches', AuthTokenMiddleware.validateToken, MatchesController.createNewMatch);
+router.patch(
+  '/matches/:id',
+  AuthTokenMiddleware.validateToken,
+  MatchesController.updateMatch,
+);
+router.patch(
+  '/matches/:id/finish',
+  AuthTokenMiddleware.validateToken,
+  MatchesController.finishMatch,
+);
 
 export default router;
