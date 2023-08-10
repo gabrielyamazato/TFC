@@ -42,3 +42,5 @@ export default class LeaderboardService {
     return sortedLb;
   }
 }
+
+// comentario para novo commit
