@@ -2,10 +2,12 @@ import { Router } from 'express';
 import getTeams from '../controllers/teams.controllers';
 import LoginController from '../controllers/login.controller';
 import MatchesController from '../controllers/matches.controller';
+import LeaderboardController from '../controllers/leaderboard.controller';
 import authLoginMiddleware from '../middlewares/authLogin.middleware';
 import AuthTokenMiddleware from '../middlewares/authToken.middleware';
 
 const loginController = new LoginController();
+const leaderboardController = new LeaderboardController();
 
 const router = Router();
 
@@ -33,5 +35,6 @@ router.patch(
   AuthTokenMiddleware.validateToken,
   MatchesController.finishMatch,
 );
+router.get('/leaderboard/home', (req, res) => leaderboardController.getLeaderboard(req, res));
 
 export default router;
