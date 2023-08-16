@@ -26,7 +26,7 @@ export default class LeaderboardService {
     return sorted;
   }
 
-  static async createLeaderBoard(): Promise<Leaderboard[]> {
+  static async createHomeLeaderboard(): Promise<Leaderboard[]> {
     const { teams, matches } = await LeaderboardService.finishedMatches();
 
     const createdLeaderboard = teams.map((team) => {
@@ -41,6 +41,33 @@ export default class LeaderboardService {
 
     return sortedLb;
   }
-}
 
-// comentario para novo commit
+  static async createAwayLeaderboard(): Promise<Leaderboard[]> {
+    const { teams, matches } = await LeaderboardService.finishedMatches();
+
+    const createdLeaderboard = teams.map((team) => {
+      const awayMatches = matches.filter((match) => match.awayTeamId === team.id);
+      return {
+        name: team.teamName,
+        ...generateLeaderboard(awayMatches, team.id),
+      };
+    });
+
+    const sortedLb = LeaderboardService.sortLeaderboard(createdLeaderboard);
+
+    return sortedLb;
+  }
+
+  static async createLeaderboard(): Promise<Leaderboard[]> {
+    const { teams, matches } = await LeaderboardService.finishedMatches();
+
+    const createdLeaderboard = teams.map((team) => ({
+      name: team.teamName,
+      ...generateLeaderboard(matches, team.id),
+    }));
+
+    const sortedLb = LeaderboardService.sortLeaderboard(createdLeaderboard);
+
+    return sortedLb;
+  }
+}

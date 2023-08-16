@@ -34,6 +34,8 @@ router.patch(
   AuthTokenMiddleware.validateToken,
   MatchesController.finishMatch,
 );
-router.get('/leaderboard/home', (req, res) => LeaderboardController.getLeaderboard(req, res));
+router.get('/leaderboard', (req, res) => LeaderboardController.getLeaderboard(req, res));
+router.get('/leaderboard/home', (req, res) => LeaderboardController.getHomeLeaderboard(req, res));
+router.get('/leaderboard/away', (req, res) => LeaderboardController.getAwayLeaderboard(req, res));
 
 export default router;
